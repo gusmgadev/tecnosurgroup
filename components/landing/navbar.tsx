@@ -10,7 +10,6 @@ const navItems = [
   { label: 'Servicios', href: '#services' },
   { label: 'Proceso',   href: '#process'  },
   { label: 'Clientes',  href: '#clientes' },
-  { label: 'Contacto',  href: '#contact'  },
 ]
 
 export function Navbar() {
@@ -88,11 +87,11 @@ export function Navbar() {
                   color: 'rgba(255,255,255,0.70)',
                   borderRadius: '99px',
                   padding: '6px 16px',
-                  fontSize: theme.fontSizes.sm,
+                  fontSize: theme.fontSizes.base,
                   transition: theme.transitions.fast,
                   display: 'block',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
               >
                 {item.label}
@@ -111,7 +110,7 @@ export function Navbar() {
             borderRadius: '99px',
             padding: '8px 20px',
             fontWeight: theme.fontWeights.bold,
-            fontSize: theme.fontSizes.sm,
+            fontSize: theme.fontSizes.base,
             transition: theme.transitions.fast,
           }}
           onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
