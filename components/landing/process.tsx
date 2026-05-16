@@ -3,10 +3,10 @@
 import { theme } from '@/lib/theme'
 
 const steps = [
-  { num: '01', title: 'Consultoría', desc: 'Evaluamos tu necesidad y recomendamos la mejor solución técnica.' },
+  { num: '01', title: 'Consultoría', desc: 'Evaluamos tu necesidad y asesoramos la mejor solución técnica.' },
   { num: '02', title: 'Presupuesto', desc: 'Cotización detallada con plazos y condiciones claras.' },
-  { num: '03', title: 'Ejecución', desc: 'Montaje o fabricación con estándar de calidad y normas vigentes.' },
-  { num: '04', title: 'Certificación', desc: 'Trámite de documentación y certificación final.' },
+  { num: '03', title: 'Ejecución', desc: 'Trabajamos bajo las directivas de fábrica de las mejores marcas a nivel mundial cumpliendo sus estándares y avalados por ellos.' },
+  { num: '04', title: 'Certificación', desc: 'Los trabajos se entregan con los certificados correspondientes bajo el control de nuestro ingeniero director técnico.' },
 ]
 
 export function Process() {

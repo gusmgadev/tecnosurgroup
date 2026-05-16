@@ -4,13 +4,13 @@ import { useState, useEffect, useCallback } from 'react'
 import { theme } from '@/lib/theme'
 
 const mockRows = [
-  { label: 'Hidrogrúa Fassi F110',       status: 'En montaje',  color: theme.colors.accent  },
+  { label: 'Hidrogrúa 10 TM',            status: 'En montaje',  color: theme.colors.accent  },
   { label: '3er Eje — Camión Scania',    status: 'Certificado', color: theme.colors.success },
   { label: 'Carrocería a medida #08',   status: 'En taller',   color: 'rgba(255,255,255,0.45)' },
 ] as const
 
 const mockStats = [
-  { num: '12+',  label: 'Años de experiencia' },
+  { num: '20+',  label: 'Años de experiencia' },
   { num: '200+', label: 'Equipos montados'    },
 ]
 

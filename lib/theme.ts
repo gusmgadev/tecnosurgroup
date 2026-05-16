@@ -102,7 +102,7 @@ export const theme = {
     tag:            "SOLUCIONES A MEDIDA PARA CARGA Y ELEVACIÓN",
     title:          "Ingeniería y soluciones integrales en equipos de izaje y transporte de carga.",
     titleHighlight: "Hidrogruas",
-    subtitle:       "Especialistas en Equipos de Izaje e Integración Vehicular — Hidrogrúas, 3er Eje y Fabricación de Carrocerías bajo normas vigentes.",
+    subtitle:       "Especialistas en Equipos de Izaje e Integración Vehicular — Hidrogrúas, 3er Eje y Fabricación de Carrocerías - Taller Homologado bajo normas bajo normas vigentes",
 
     cta: {
       primary:   { text: "Ver Servicios", href: "#services" },

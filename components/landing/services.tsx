@@ -19,7 +19,7 @@ const services = [
     icon: '🚛',
   },
   {
-    title: 'Certificación bajo Normas Vigentes',
+    title: 'Taller Homologado – Cerficados de montaje y fabricación',
     description: 'Trámites y certificaciones oficiales de seguridad y cumplimiento normativo.',
     icon: '📋',
   },
