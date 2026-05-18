@@ -1,8 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-let _client: ReturnType<typeof createClient> | null = null
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AnyClient = SupabaseClient<any>
 
-function getClient() {
+let _client: AnyClient | null = null
+
+function getClient(): AnyClient {
   if (!_client) {
     _client = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,7 +15,9 @@ function getClient() {
   return _client
 }
 
-export const supabaseAdmin = new Proxy({} as ReturnType<typeof createClient>, {
+// Proxy so the module can be imported at build time without env vars present.
+// createClient() is only called on the first actual request.
+export const supabaseAdmin: AnyClient = new Proxy({} as AnyClient, {
   get(_target, prop) {
     const client = getClient()
     const value = (client as any)[prop]
