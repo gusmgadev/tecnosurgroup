@@ -7,8 +7,7 @@ import { Contact }   from '@/components/landing/contact'
 import { Footer }    from '@/components/landing/footer'
 import { supabaseAdmin } from '@/services/supabase-admin'
 
-// Revalida cada 60s — clientes se actualizan sin bloquear cada request
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const { data: clientes } = await supabaseAdmin
