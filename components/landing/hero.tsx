@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import { theme } from '@/lib/theme'
 
 const mockRows = [
@@ -43,15 +44,23 @@ export function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `url(${src})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
             filter: `blur(${theme.hero.blurAmount})`,
             transform: 'scale(1.05)',
             opacity: i === current ? 1 : 0,
             transition: `opacity ${theme.hero.slideTransition} ease`,
+            overflow: 'hidden',
           }}
-        />
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="100vw"
+            priority={i === 0}
+            quality={82}
+          />
+        </div>
       ))}
 
       {/* ── Overlay ── */}

@@ -1,0 +1,84 @@
+'use client'
+
+import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { signOut } from 'next-auth/react'
+import { Building2, LogOut } from 'lucide-react'
+import { theme } from '@/lib/theme'
+
+export default function Sidebar() {
+  const pathname = usePathname()
+
+  const navItems = [
+    { label: 'Clientes', href: '/dashboard/clientes', Icon: Building2 },
+  ]
+
+  return (
+    <aside
+      style={{
+        width: theme.dashboard.sidebarWidth,
+        backgroundColor: theme.colors.dark,
+        display: 'flex',
+        flexDirection: 'column',
+        flexShrink: 0,
+        minHeight: '100vh',
+      }}
+    >
+      {/* Logo */}
+      <div style={{ padding: '24px 20px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <Image
+          src={theme.logo.pathWhite}
+          alt="Tecnosur Group"
+          width={120}
+          height={32}
+          style={{ display: 'block' }}
+        />
+      </div>
+
+      {/* Nav */}
+      <nav style={{ flex: 1, padding: '16px 0' }}>
+        <p style={{ fontSize: theme.fontSizes.xs, color: 'rgba(255,255,255,0.35)', fontWeight: theme.fontWeights.medium, textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 20px 8px', margin: 0 }}>
+          Gestión
+        </p>
+        {navItems.map(({ label, href, Icon }) => {
+          const active = pathname.startsWith(href)
+          return (
+            <Link
+              key={href}
+              href={href}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '10px 20px',
+                margin: '2px 8px',
+                borderRadius: theme.radii.sm,
+                textDecoration: 'none',
+                fontSize: theme.fontSizes.sm,
+                fontWeight: active ? theme.fontWeights.medium : theme.fontWeights.regular,
+                color: active ? theme.colors.accent : 'rgba(255,255,255,0.55)',
+                backgroundColor: active ? `${theme.colors.accent}18` : 'transparent',
+                transition: theme.transitions.fast,
+              }}
+            >
+              <Icon size={16} />
+              {label}
+            </Link>
+          )
+        })}
+      </nav>
+
+      {/* Logout */}
+      <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <button
+          onClick={() => signOut({ callbackUrl: theme.auth.redirectAfterLogout })}
+          style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.5)', fontSize: theme.fontSizes.sm, padding: 0, transition: theme.transitions.fast }}
+        >
+          <LogOut size={14} />
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+  )
+}

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/MGA/PROYECTOSWEB/mga-v2/**)",
+      "Bash(Get-ChildItem -Path . -Name)",
+      "Bash(ls -la \"c:\\\\MGA\\\\PROYECTOSWEB\\\\TecnosurGroup\\\\\" 2>&1 | head -30)",
+      "Read(//c/MGA/PROYECTOSWEB/**)",
+      "Bash(xargs grep -l \"clientes\\\\|schema\\\\|table\")",
+      "Bash(node -e \"const pkg = require\\('C:/MGA/PROYECTOSWEB/TecnosurGroup/node_modules/next-auth/package.json'\\); console.log\\(pkg.version\\)\")"
+    ]
+  }
+}

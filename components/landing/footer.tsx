@@ -91,18 +91,43 @@ export function Footer() {
 
       {/* ── Grid principal ── */}
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr]"
         style={{
-          maxWidth: '1200px',
+          maxWidth: '1280px',
           margin: '0 auto',
-          padding: '48px 48px 40px',
-          gap: '40px',
-          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          padding: '48px 32px 40px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '24px',
+          borderBottom: '1px solid rgba(255,255,255,0.12)',
         }}
       >
 
-        {/* Columna 1 — Empresa */}
-        <div>
+        {/* Columna 1 — Empresa / Logo */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: '16px',
+            padding: '20px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+            }}
+          >
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+              Tecnosur Group
+            </span>
+          </div>
           <div
             style={{
               width: '96px',
@@ -130,11 +155,104 @@ export function Footer() {
               fontSize: theme.fontSizes.sm,
               lineHeight: 1.65,
               marginBottom: '20px',
+              textAlign: 'justify',
             }}
           >
             {theme.footer.description}
           </p>
-          <div style={{ display: 'flex', gap: '10px' }}>
+        </div>
+
+        {/* Columna 2 — Servicios */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: '16px',
+            padding: '20px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+            }}
+          >
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+              Servicios
+            </span>
+          </div>
+          <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
+            {theme.footer.services.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  style={{
+                    color: 'rgba(255,255,255,0.55)',
+                    fontSize: theme.fontSizes.sm,
+                    transition: theme.transitions.fast,
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Columna 3 — Navegación */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: '16px',
+            padding: '20px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+            }}
+          >
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+              Navegación
+            </span>
+          </div>
+          <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
+            {theme.footer.nav.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  style={{
+                    color: 'rgba(255,255,255,0.55)',
+                    fontSize: theme.fontSizes.sm,
+                    transition: theme.transitions.fast,
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
@@ -171,55 +289,34 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Columna 2 — Servicios */}
-        <div>
-          <ColTitle>Servicios</ColTitle>
-          <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
-            {theme.footer.services.map((s) => (
-              <li key={s.label}>
-                <a
-                  href={s.href}
-                  style={{
-                    color: 'rgba(255,255,255,0.55)',
-                    fontSize: theme.fontSizes.sm,
-                    transition: theme.transitions.fast,
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Columna 3 — Navegación */}
-        <div>
-          <ColTitle>Navegación</ColTitle>
-          <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
-            {theme.footer.nav.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  style={{
-                    color: 'rgba(255,255,255,0.55)',
-                    fontSize: theme.fontSizes.sm,
-                    transition: theme.transitions.fast,
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         {/* Columna 4 — Contacto + Mapa */}
-        <div>
-          <ColTitle>Contacto</ColTitle>
+        <div
+          style={{
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: '16px',
+            padding: '20px',
+          }}
+        >
+          {/* Barra de título estilo hero */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              marginBottom: '16px',
+              paddingBottom: '12px',
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+            }}
+          >
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+              Contacto — Tecnosur Group
+            </span>
+          </div>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
             {contactItems.map(({ icon: Icon, href, label, external }) => (
               <a
@@ -259,15 +356,16 @@ export function Footer() {
             referrerPolicy="no-referrer-when-downgrade"
             title="Ubicación Tecnosur Group"
           />
+
         </div>
       </div>
 
       {/* ── Barra inferior ── */}
       <div
         style={{
-          maxWidth: '1200px',
+          maxWidth: '1280px',
           margin: '0 auto',
-          padding: '20px 48px',
+          padding: '20px 32px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',

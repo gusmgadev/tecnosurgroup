@@ -1,17 +1,30 @@
-import { Navbar } from '@/components/landing/navbar'
-import { Hero } from '@/components/landing/hero'
-import { Services } from '@/components/landing/services'
-import { Process } from '@/components/landing/process'
-import { Contact } from '@/components/landing/contact'
-import { Footer } from '@/components/landing/footer'
+import { Navbar }   from '@/components/landing/navbar'
+import { Hero }      from '@/components/landing/hero'
+import { Services }  from '@/components/landing/services'
+import { Process }   from '@/components/landing/process'
+import Clients       from '@/components/landing/clients'
+import { Contact }   from '@/components/landing/contact'
+import { Footer }    from '@/components/landing/footer'
+import { supabaseAdmin } from '@/services/supabase-admin'
 
-export default function Home() {
+// Revalida cada 60s — clientes se actualizan sin bloquear cada request
+export const revalidate = 60
+
+export default async function Home() {
+  const { data: clientes } = await supabaseAdmin
+    .from('clientes')
+    .select('id, nombre, rubro, telefono, direccion, imagen, pagina_web')
+    .eq('mostrar_en_landing', true)
+    .eq('activo', true)
+    .order('nombre')
+
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
       <Services />
       <Process />
+      <Clients clientes={clientes ?? []} />
       <Contact />
       <Footer />
     </main>

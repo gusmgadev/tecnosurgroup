@@ -110,15 +110,15 @@ export const theme = {
     },
 
     images: [
-      "/images/hero-1.jpg",
-      "/images/hero-2.jpg",
-      "/images/hero-3.jpg",
+      "/images/hero/hero-1.jpg",
+      "/images/hero/hero-2.jpg",
+      "/images/hero/hero-3.jpg",
     ],
   },
 
   // ── FOOTER ─────────────────────────────────────────────────────────────────
   footer: {
-    description: "En Tecnosur Group, no solo instalamos equipos; diseñamos soluciones de integración vehicular que optimizan la operatividad de tu flota. Nos especializamos en el montaje de hidrogrúas, hidrolevadores y plataformas de carga, adaptando cada unidad a las necesidades específicas del cliente.",
+    description: "En Tecnosur Group, no solo instalamos equipos; diseñamos soluciones de integración vehicular que optimizan la operatividad de tu flota. Nos especializamos en el montaje de hidrogrúas, hidrolevadores y plataformas de carga,",
     copyright:   "Tecnosur Group 2026",
 
     social: {
@@ -168,6 +168,39 @@ export const theme = {
     pathWhite: "/images/logos/logo-white.png", // logo sobre fondos oscuros
     width:  160,
     height:  40,
+  },
+
+  // ── SERVICIOS ──────────────────────────────────────────────────────────────
+  services: {
+    title: "Nuestros Servicios",
+    items: [
+      {
+        title:       'Montaje de Hidrogrúas e Hidrolevadores',
+        description: 'Instalación profesional de equipos de izaje en vehículos comerciales, con garantía certificada.',
+        image:       '/images/servicios/montaje higro.jpeg',
+      },
+      {
+        title:       'Reformas Estructurales y 3er Eje',
+        description: 'Adaptaciones vehiculares para incrementar capacidad de carga y estabilidad.',
+        image:       '/images/servicios/reformas estructura.jpeg',
+      },
+      {
+        title:       'Fabricación de Carrocerías a Medida',
+        description: 'Diseño y construcción de carrocerías personalizadas según necesidades del cliente.',
+        image:       '/images/servicios/fabricacion carrocerias.jpeg',
+      },
+      {
+        title:       'Taller Homologado – Certificados de montaje y fabricación',
+        description: 'Trámites y certificaciones oficiales de seguridad y cumplimiento normativo.',
+        image:       '/images/servicios/taller homologado.jpeg',
+      },
+    ],
+  },
+
+  // ── CLIENTES (landing section) ─────────────────────────────────────────────
+  clients: {
+    title:    "Nuestros Clientes",
+    subtitle: "Empresas que confían en nuestra trayectoria y calidad de trabajo",
   },
 
   // ── AUTH ───────────────────────────────────────────────────────────────────
