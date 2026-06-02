@@ -263,7 +263,7 @@ export const theme = {
     description: "Montaje de hidrogrúas, 3er eje y fabricación de carrocerías en Patagonia. Taller homologado en Rada Tilly, Chubut. Más de 20 años de experiencia en transporte y energía. Certificación oficial.",
     keywords:    "hidrogrúas Patagonia, montaje hidrogrúas Chubut, equipos de izaje Argentina, 3er eje camiones, fabricación carrocerías Patagonia, taller homologado Rada Tilly, Tecnosur Group, integración vehicular, hidrolevadores",
     url:         "https://www.tecnosurgroup.com",
-    ogImage:     "/images/hero/hero-1.jpg",
+    ogImage:     "/images/og-image.jpg",
     locale:      "es_AR",
   },
 
