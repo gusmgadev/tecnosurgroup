@@ -101,8 +101,8 @@ export const theme = {
 
     tag:            "SOLUCIONES A MEDIDA PARA CARGA Y ELEVACIÓN",
     title:          "Ingeniería y soluciones integrales en equipos de izaje y transporte de carga.",
-    titleHighlight: "Hidrogruas",
-    subtitle:       "Especialistas en Equipos de Izaje e Integración Vehicular — Hidrogrúas, 3er Eje y Fabricación de Carrocerías - Taller Homologado bajo normas bajo normas vigentes",
+    titleHighlight: "Hidrogrúas",
+    subtitle:       "Especialistas en Equipos de Izaje e Integración Vehicular — Hidrogrúas, 3er Eje y Fabricación de Carrocerías — Taller Homologado bajo normas vigentes",
 
     cta: {
       primary:   { text: "Ver Servicios", href: "#services" },
@@ -118,7 +118,7 @@ export const theme = {
 
   // ── FOOTER ─────────────────────────────────────────────────────────────────
   footer: {
-    description: "En Tecnosur Group, no solo instalamos equipos; diseñamos soluciones de integración vehicular que optimizan la operatividad de tu flota. Nos especializamos en el montaje de hidrogrúas, hidrolevadores y plataformas de carga,",
+    description: "En Tecnosur Group diseñamos soluciones de integración vehicular que optimizan la operatividad de tu flota. Especializados en montaje de hidrogrúas, 3er eje y fabricación de carrocerías a medida en Patagonia.",
     copyright:   "Tecnosur Group 2026",
 
     social: {
@@ -157,7 +157,7 @@ export const theme = {
   // ── CONTACTO ───────────────────────────────────────────────────────────────
   contact: {
     phone:    "+54 297 443-7049",
-    email:    "tecnosurcr@gmail.com",
+    email:    "info@tecnosurgroup.com",
     whatsapp: "542974437049",            // sin + ni espacios — formato para wa.me/
     address:  "Gdor. Manuel Pio Raso 1706, Rada Tilly, Chubut, Argentina",
   },
@@ -255,6 +255,16 @@ export const theme = {
     title:    "Contactanos hoy",
     subtitle: "Te brindamos asesoramiento sin compromiso",
     button:   "Escribinos",
+  },
+
+  // ── SEO ────────────────────────────────────────────────────────────────
+  seo: {
+    title:       "Tecnosur Group | Montaje de Hidrogrúas y Equipos de Izaje — Patagonia",
+    description: "Montaje de hidrogrúas, 3er eje y fabricación de carrocerías en Patagonia. Taller homologado en Rada Tilly, Chubut. Más de 20 años de experiencia en transporte y energía. Certificación oficial.",
+    keywords:    "hidrogrúas Patagonia, montaje hidrogrúas Chubut, equipos de izaje Argentina, 3er eje camiones, fabricación carrocerías Patagonia, taller homologado Rada Tilly, Tecnosur Group, integración vehicular, hidrolevadores",
+    url:         "https://www.tecnosurgroup.com",
+    ogImage:     "/images/hero/hero-1.jpg",
+    locale:      "es_AR",
   },
 
   // ── AUTH ───────────────────────────────────────────────────────────────────
