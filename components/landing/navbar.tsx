@@ -55,24 +55,14 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex-shrink-0"
-          style={{
-            width: '100px',
-            height: '100px',
-            borderRadius: '50%',
-            background: '#ffffff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
-          }}
+          className="flex-shrink-0 relative w-[68px] h-[68px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center overflow-hidden"
+          style={{ background: '#ffffff' }}
         >
           <Image
             src={theme.logo.path}
             alt="Tecnosur Group"
-            width={80}
-            height={80}
-            style={{ objectFit: 'contain' }}
+            fill
+            style={{ objectFit: 'contain', padding: '6px' }}
             priority
           />
         </Link>
@@ -122,14 +112,13 @@ export function Navbar() {
         {/* Hamburguesa mobile */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden"
+          className="flex items-center md:hidden"
           style={{
             color: '#ffffff',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
             padding: '4px',
-            display: 'flex',
           }}
           aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
         >

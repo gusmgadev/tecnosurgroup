@@ -72,7 +72,7 @@ function ColTitle({ children }: { children: React.ReactNode }) {
   return (
     <h3
       style={{
-        color: 'rgba(255,255,255,0.35)',
+        color: 'rgba(255,255,255,0.55)',
         fontSize: theme.fontSizes.xs,
         letterSpacing: '0.8px',
         textTransform: 'uppercase',
@@ -87,25 +87,23 @@ function ColTitle({ children }: { children: React.ReactNode }) {
 
 export function Footer() {
   return (
-    <footer style={{ background: theme.colors.dark }}>
+    <footer style={{ background: theme.colors.primary, overflow: 'hidden' }}>
 
       {/* ── Grid principal ── */}
       <div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
-          padding: '48px 32px 40px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '24px',
-          borderBottom: '1px solid rgba(255,255,255,0.12)',
+          padding: '48px 24px 40px',
+          borderBottom: '1px solid rgba(255,255,255,0.10)',
         }}
       >
 
         {/* Columna 1 — Empresa / Logo */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.06)',
+            background: 'transparent',
             border: '1px solid rgba(255,255,255,0.12)',
             borderRadius: '16px',
             padding: '20px',
@@ -124,7 +122,7 @@ export function Footer() {
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
-            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.75)', fontWeight: theme.fontWeights.medium }}>
               Tecnosur Group
             </span>
           </div>
@@ -151,7 +149,7 @@ export function Footer() {
           </div>
           <p
             style={{
-              color: 'rgba(255,255,255,0.50)',
+              color: 'rgba(255,255,255,0.75)',
               fontSize: theme.fontSizes.sm,
               lineHeight: 1.65,
               marginBottom: '20px',
@@ -165,7 +163,7 @@ export function Footer() {
         {/* Columna 2 — Servicios */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.06)',
+            background: 'transparent',
             border: '1px solid rgba(255,255,255,0.12)',
             borderRadius: '16px',
             padding: '20px',
@@ -184,7 +182,7 @@ export function Footer() {
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
-            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.75)', fontWeight: theme.fontWeights.medium }}>
               Servicios
             </span>
           </div>
@@ -194,12 +192,12 @@ export function Footer() {
                 <a
                   href={s.href}
                   style={{
-                    color: 'rgba(255,255,255,0.55)',
+                    color: 'rgba(255,255,255,0.75)',
                     fontSize: theme.fontSizes.sm,
                     transition: theme.transitions.fast,
                   }}
                   onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
                 >
                   {s.label}
                 </a>
@@ -211,7 +209,7 @@ export function Footer() {
         {/* Columna 3 — Navegación */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.06)',
+            background: 'transparent',
             border: '1px solid rgba(255,255,255,0.12)',
             borderRadius: '16px',
             padding: '20px',
@@ -230,7 +228,7 @@ export function Footer() {
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
-            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.75)', fontWeight: theme.fontWeights.medium }}>
               Navegación
             </span>
           </div>
@@ -240,12 +238,12 @@ export function Footer() {
                 <a
                   href={item.href}
                   style={{
-                    color: 'rgba(255,255,255,0.55)',
+                    color: 'rgba(255,255,255,0.75)',
                     fontSize: theme.fontSizes.sm,
                     transition: theme.transitions.fast,
                   }}
                   onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
                 >
                   {item.label}
                 </a>
@@ -264,12 +262,12 @@ export function Footer() {
                   width: '36px',
                   height: '36px',
                   borderRadius: theme.radii.md,
-                  background: 'rgba(255,255,255,0.06)',
+                  background: 'rgba(255,255,255,0.08)',
                   border: '0.5px solid rgba(255,255,255,0.10)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'rgba(255,255,255,0.60)',
+                  color: 'rgba(255,255,255,0.70)',
                   transition: theme.transitions.fast,
                 }}
                 onMouseEnter={e => {
@@ -278,8 +276,8 @@ export function Footer() {
                   e.currentTarget.style.border     = `0.5px solid ${theme.colors.accent}`
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.06)'
-                  e.currentTarget.style.color      = 'rgba(255,255,255,0.60)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
+                  e.currentTarget.style.color      = 'rgba(255,255,255,0.75)'
                   e.currentTarget.style.border     = '0.5px solid rgba(255,255,255,0.10)'
                 }}
               >
@@ -292,7 +290,7 @@ export function Footer() {
         {/* Columna 4 — Contacto + Mapa */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.06)',
+            background: 'transparent',
             border: '1px solid rgba(255,255,255,0.12)',
             borderRadius: '16px',
             padding: '20px',
@@ -312,7 +310,7 @@ export function Footer() {
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ef4444' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#f59e0b' }} />
             <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
-            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.55)', fontWeight: theme.fontWeights.medium }}>
+            <span style={{ marginLeft: '8px', fontSize: theme.fontSizes.sm, color: 'rgba(255,255,255,0.75)', fontWeight: theme.fontWeights.medium }}>
               Contacto — Tecnosur Group
             </span>
           </div>
@@ -327,12 +325,12 @@ export function Footer() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '10px',
-                  color: 'rgba(255,255,255,0.55)',
+                  color: 'rgba(255,255,255,0.75)',
                   fontSize: theme.fontSizes.sm,
                   transition: theme.transitions.fast,
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
+                onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.95)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
               >
                 <IconBadge><Icon size={13} /></IconBadge>
                 {label}
@@ -362,18 +360,14 @@ export function Footer() {
 
       {/* ── Barra inferior ── */}
       <div
+        className="flex flex-col sm:flex-row justify-between items-center gap-3"
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
-          padding: '20px 32px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '12px',
+          padding: '20px 24px',
         }}
       >
-        <span style={{ color: 'rgba(255,255,255,0.28)', fontSize: theme.fontSizes.sm }}>
+        <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: theme.fontSizes.sm }}>
           © {theme.footer.copyright}
         </span>
         <div style={{ display: 'flex', gap: '24px' }}>
@@ -385,12 +379,12 @@ export function Footer() {
               key={label}
               href={href}
               style={{
-                color: 'rgba(255,255,255,0.28)',
+                color: 'rgba(255,255,255,0.55)',
                 fontSize: theme.fontSizes.sm,
                 transition: theme.transitions.fast,
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.60)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.28)')}
+              onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.55)')}
             >
               {label}
             </a>

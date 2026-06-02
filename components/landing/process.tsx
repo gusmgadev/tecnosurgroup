@@ -1,8 +1,10 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { theme } from '@/lib/theme'
+import { SectionBanner } from '@/components/landing/section-banner'
 
 const steps = [
   { num: '01', title: 'Consultoría',  desc: 'Evaluamos tu necesidad y asesoramos la mejor solución técnica.' },
@@ -97,20 +99,19 @@ export function Process() {
   return (
     <section
       id="process"
-      style={{ position: 'relative', padding: '80px 24px', overflow: 'hidden' }}
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
       {/* Fondo con imagen desenfocada */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'url(/images/proceso/proceso.jpeg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(2px)',
-          transform: 'scale(1.05)',
-        }}
-      />
+      <div style={{ position: 'absolute', inset: 0, filter: 'blur(2px)', transform: 'scale(1.05)', overflow: 'hidden' }}>
+        <Image
+          src="/images/proceso/proceso.jpeg"
+          alt=""
+          fill
+          style={{ objectFit: 'cover' }}
+          sizes="100vw"
+          quality={80}
+        />
+      </div>
       {/* Overlay oscuro */}
       <div
         style={{
@@ -120,8 +121,13 @@ export function Process() {
         }}
       />
 
+      <SectionBanner
+        label={theme.sectionHeaders.process.label}
+        description={theme.sectionHeaders.process.description}
+      />
+
       {/* Contenido */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' }}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

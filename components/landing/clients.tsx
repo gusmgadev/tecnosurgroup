@@ -1,17 +1,40 @@
 'use client'
 
+import Image from 'next/image'
 import { theme } from '@/lib/theme'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { SectionBanner } from '@/components/landing/section-banner'
 
 export default function Clients() {
   return (
     <section
       id="clientes"
-      className="py-20 px-6 md:px-12"
-      style={{ backgroundColor: theme.colors.primary, scrollMarginTop: '64px' }}
+      style={{ position: 'relative', scrollMarginTop: '64px', overflow: 'hidden' }}
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Imagen de fondo */}
+      <Image
+        src="/images/clientes/clientes.jpg"
+        alt=""
+        fill
+        style={{ objectFit: 'cover', zIndex: 0 }}
+        sizes="100vw"
+        quality={80}
+      />
+      {/* Overlay oscuro */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: 'rgba(0,0,0,0.75)',
+        zIndex: 1,
+      }} />
+
+      <SectionBanner
+        label={theme.sectionHeaders.clients.label}
+        description={theme.sectionHeaders.clients.description}
+      />
+
+      <div className="max-w-6xl mx-auto py-20 px-6 md:px-12" style={{ position: 'relative', zIndex: 2 }}>
         <div className="text-center mb-14">
           <h2
             className="text-3xl md:text-4xl font-bold mb-4"

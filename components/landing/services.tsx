@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { theme } from '@/lib/theme'
+import { SectionBanner } from '@/components/landing/section-banner'
 
 function ServiceCard({ service, index }: { service: typeof theme.services.items[number]; index: number }) {
   const [hovered, setHovered] = useState(false)
@@ -100,8 +101,12 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
 
 export function Services() {
   return (
-    <section id="services" style={{ background: theme.colors.background, padding: '80px 24px' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <section id="services" style={{ background: theme.colors.background }}>
+      <SectionBanner
+        label={theme.sectionHeaders.services.label}
+        description={theme.sectionHeaders.services.description}
+      />
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' }}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,11 +117,29 @@ export function Services() {
             fontWeight: theme.fontWeights.bold,
             color: theme.colors.text,
             textAlign: 'center',
-            marginBottom: '48px',
+            marginBottom: '12px',
           }}
         >
           {theme.services.title}
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          style={{
+            fontSize: theme.fontSizes.base,
+            color: theme.colors.textMuted,
+            textAlign: 'center',
+            maxWidth: '640px',
+            margin: '0 auto 48px',
+            lineHeight: 1.65,
+          }}
+        >
+          &ldquo;Desde el montaje de hidrogrúas hasta la fabricación de carrocerías a medida —{' '}
+          <em>soluciones certificadas para la industria del transporte y la energía.</em>&rdquo;
+        </motion.p>
 
         <div
           style={{

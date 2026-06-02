@@ -158,7 +158,7 @@ export const theme = {
   contact: {
     phone:    "+54 297 443-7049",
     email:    "tecnosurcr@gmail.com",
-    whatsapp: "5492974437049",          // sin + ni espacios — formato para wa.me/
+    whatsapp: "542974437049",            // sin + ni espacios — formato para wa.me/
     address:  "Gdor. Manuel Pio Raso 1706, Rada Tilly, Chubut, Argentina",
   },
 
@@ -173,6 +173,7 @@ export const theme = {
   // ── SERVICIOS ──────────────────────────────────────────────────────────────
   services: {
     title: "Nuestros Servicios",
+    subtitle: "Desde el montaje de hidrogrúas hasta la fabricación de carrocerías a medida — soluciones certificadas para la industria del transporte y la energía.",
     items: [
       {
         title:       'Montaje de Hidrogrúas e Hidrolevadores',
@@ -239,6 +240,21 @@ export const theme = {
       "PGP SA Petroaike",
       "Wenlen SA",
     ],
+  },
+
+  // ── SECTION HEADERS ────────────────────────────────────────────────────────
+  sectionHeaders: {
+    services: { label: "Lo que hacemos",               description: "Montaje, adaptación vehicular y fabricación de equipos a medida" },
+    process:  { label: "Cómo trabajamos",              description: "Proceso claro, eficiente y respaldado por certificación oficial" },
+    clients:  { label: "Empresas que confían en nosotros", description: "Más de 20 años de trayectoria en la industria del transporte y la energía" },
+    contact:  { label: "Escribinos",                    description: "Cotizá o consultanos sin compromiso — te respondemos rápido" },
+  },
+
+  // ── CTA BANNER ─────────────────────────────────────────────────────────────
+  cta: {
+    title:    "Contactanos hoy",
+    subtitle: "Te brindamos asesoramiento sin compromiso",
+    button:   "Escribinos",
   },
 
   // ── AUTH ───────────────────────────────────────────────────────────────────
