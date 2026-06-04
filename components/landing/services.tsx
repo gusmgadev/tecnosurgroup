@@ -101,7 +101,7 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
 
 export function Services() {
   return (
-    <section id="services" style={{ background: theme.colors.background }}>
+    <section id="services" style={{ background: theme.colors.background, minHeight: '100dvh' }}>
       <SectionBanner
         label={theme.sectionHeaders.services.label}
         description={theme.sectionHeaders.services.description}

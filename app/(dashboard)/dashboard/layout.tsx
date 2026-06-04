@@ -13,7 +13,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       <main
         style={{
           flex: 1,
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.dashboard.bg,
           padding: '32px',
           overflowY: 'auto',
         }}

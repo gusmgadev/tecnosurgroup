@@ -283,6 +283,15 @@ export const theme = {
     sidebarWidth:          "240px",
     sidebarWidthCollapsed: "64px",
     headerHeight:          "60px",
+
+    // Paleta clara para el área de contenido del dashboard
+    bg:        "#F4F5F7",   // fondo general del área de contenido
+    cardBg:    "#FFFFFF",   // cards, tabla, modales
+    thBg:      "#F9FAFB",   // encabezado de tabla
+    inputBg:   "#FFFFFF",   // inputs y selects
+    text:      "#111111",   // texto principal
+    textMuted: "#6B7280",   // texto secundario
+    border:    "#E5E7EB",   // bordes
   },
 
 } as const

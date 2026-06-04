@@ -33,24 +33,24 @@ const TYPE_LABELS: Record<string, string> = {
 
 const inputStyle = {
   width: '100%', padding: '10px 14px', fontSize: theme.fontSizes.base,
-  border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.sm,
+  border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.sm,
   outline: 'none', boxSizing: 'border-box' as const, fontFamily: 'inherit',
-  backgroundColor: theme.colors.primary, color: theme.colors.text,
+  backgroundColor: theme.dashboard.inputBg, color: theme.dashboard.text,
 }
 const labelStyle = {
   display: 'block', fontSize: theme.fontSizes.sm,
-  fontWeight: theme.fontWeights.medium, color: theme.colors.text, marginBottom: '6px',
+  fontWeight: theme.fontWeights.medium, color: theme.dashboard.text, marginBottom: '6px',
 }
 const thStyle: React.CSSProperties = {
   textAlign: 'left', padding: '12px 16px', fontSize: theme.fontSizes.xs,
-  fontWeight: theme.fontWeights.medium, color: theme.colors.textMuted,
+  fontWeight: theme.fontWeights.medium, color: theme.dashboard.textMuted,
   textTransform: 'uppercase', letterSpacing: '0.05em',
-  borderBottom: `1px solid ${theme.colors.border}`,
-  backgroundColor: theme.colors.secondary,
+  borderBottom: `1px solid ${theme.dashboard.border}`,
+  backgroundColor: theme.dashboard.thBg,
 }
 const tdStyle: React.CSSProperties = {
-  padding: '14px 16px', fontSize: theme.fontSizes.sm, color: theme.colors.text,
-  borderBottom: `1px solid ${theme.colors.border}`,
+  padding: '14px 16px', fontSize: theme.fontSizes.sm, color: theme.dashboard.text,
+  borderBottom: `1px solid ${theme.dashboard.border}`,
 }
 
 function ModalOverlay({ children }: { children: React.ReactNode }) {
@@ -65,16 +65,16 @@ function ModalOverlay({ children }: { children: React.ReactNode }) {
 
 function ModalCard({ title, onClose, children, formId }: { title: string; onClose: () => void; children: React.ReactNode; formId?: string }) {
   return (
-    <div style={{ backgroundColor: theme.colors.secondary, border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.md, boxShadow: '0 8px 32px rgba(0,0,0,0.5)', overflow: 'hidden' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: `1px solid ${theme.colors.border}` }}>
-        <h2 style={{ margin: 0, fontSize: theme.fontSizes.base, fontWeight: theme.fontWeights.bold, color: theme.colors.text }}>{title}</h2>
+    <div style={{ backgroundColor: theme.dashboard.cardBg, border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.md, boxShadow: '0 4px 16px rgba(0,0,0,0.12)', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: `1px solid ${theme.dashboard.border}` }}>
+        <h2 style={{ margin: 0, fontSize: theme.fontSizes.base, fontWeight: theme.fontWeights.bold, color: theme.dashboard.text }}>{title}</h2>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           {formId && (
-            <button type="submit" form={formId} title="Guardar" style={{ background: 'none', border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.sm, cursor: 'pointer', color: theme.colors.textMuted, padding: '5px 8px', display: 'flex', alignItems: 'center' }}>
+            <button type="submit" form={formId} title="Guardar" style={{ background: 'none', border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.sm, cursor: 'pointer', color: theme.dashboard.textMuted, padding: '5px 8px', display: 'flex', alignItems: 'center' }}>
               <Save size={16} />
             </button>
           )}
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: theme.colors.textMuted, display: 'flex', padding: 0 }}>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: theme.dashboard.textMuted, display: 'flex', padding: 0 }}>
             <X size={18} />
           </button>
         </div>
@@ -134,17 +134,17 @@ function RubroCombobox({ value, onChange, rubros, onNewRubro }: {
         autoComplete="off"
       />
       {showDropdown && (
-        <div style={{ position: 'absolute', top: 'calc(100% + 2px)', left: 0, right: 0, backgroundColor: theme.colors.secondary, border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.sm, boxShadow: '0 4px 16px rgba(0,0,0,0.4)', zIndex: 200, maxHeight: '200px', overflowY: 'auto' }}>
+        <div style={{ position: 'absolute', top: 'calc(100% + 2px)', left: 0, right: 0, backgroundColor: theme.dashboard.cardBg, border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.sm, boxShadow: '0 4px 16px rgba(0,0,0,0.12)', zIndex: 200, maxHeight: '200px', overflowY: 'auto' }}>
           {filtered.map((r) => (
             <div key={r} onMouseDown={() => select(r)}
-              style={{ padding: '8px 14px', cursor: 'pointer', fontSize: theme.fontSizes.sm, color: theme.colors.text }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = theme.colors.border)}
+              style={{ padding: '8px 14px', cursor: 'pointer', fontSize: theme.fontSizes.sm, color: theme.dashboard.text }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = theme.dashboard.thBg)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '')}
             >{r}</div>
           ))}
           {isNew && (
             <div onMouseDown={addNew}
-              style={{ padding: '8px 14px', cursor: 'pointer', fontSize: theme.fontSizes.sm, color: theme.colors.accent, fontWeight: theme.fontWeights.medium, borderTop: filtered.length > 0 ? `1px solid ${theme.colors.border}` : 'none' }}
+              style={{ padding: '8px 14px', cursor: 'pointer', fontSize: theme.fontSizes.sm, color: theme.colors.accent, fontWeight: theme.fontWeights.medium, borderTop: filtered.length > 0 ? `1px solid ${theme.dashboard.border}` : 'none' }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = `${theme.colors.accent}10`)}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '')}
             >+ Agregar &quot;{input.trim()}&quot;</div>
@@ -179,7 +179,7 @@ function ClienteFormFields({ form, rubros, onNewRubro }: {
     setLogoPreview(json.url)
   }
 
-  const selectStyle = { ...inputStyle, backgroundColor: theme.colors.primary }
+  const selectStyle = { ...inputStyle, backgroundColor: theme.dashboard.inputBg }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -241,7 +241,7 @@ function ClienteFormFields({ form, rubros, onNewRubro }: {
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
             {logoPreview && (
               <div style={{ position: 'relative', flexShrink: 0 }}>
-                <img src={logoPreview} alt="logo" style={{ width: 64, height: 64, objectFit: 'contain', borderRadius: theme.radii.sm, border: `1px solid ${theme.colors.border}`, backgroundColor: '#ffffff' }} />
+                <img src={logoPreview} alt="logo" style={{ width: 64, height: 64, objectFit: 'contain', borderRadius: theme.radii.sm, border: `1px solid ${theme.dashboard.border}`, backgroundColor: '#ffffff' }} />
                 <button type="button" onClick={() => { form.setValue('imagen', '', { shouldDirty: true }); setLogoPreview('') }}
                   style={{ position: 'absolute', top: -6, right: -6, background: theme.colors.error, border: 'none', borderRadius: '50%', width: 18, height: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#fff', padding: 0 }}>
                   <X size={10} />
@@ -250,13 +250,13 @@ function ClienteFormFields({ form, rubros, onNewRubro }: {
             )}
             <div>
               <label htmlFor="logo-upload"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 14px', border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.sm, cursor: uploadingLogo ? 'not-allowed' : 'pointer', fontSize: theme.fontSizes.sm, color: theme.colors.textMuted, backgroundColor: theme.colors.primary }}>
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 14px', border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.sm, cursor: uploadingLogo ? 'not-allowed' : 'pointer', fontSize: theme.fontSizes.sm, color: theme.dashboard.textMuted, backgroundColor: theme.dashboard.inputBg }}>
                 {uploadingLogo ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
                 {uploadingLogo ? 'Subiendo...' : logoPreview ? 'Cambiar imagen' : 'Seleccionar imagen'}
               </label>
               <input id="logo-upload" type="file" accept="image/*" style={{ display: 'none' }} disabled={uploadingLogo}
                 onChange={async (e) => { const file = e.target.files?.[0]; if (file) await handleLogoFile(file); e.target.value = '' }} />
-              <p style={{ fontSize: theme.fontSizes.xs, color: theme.colors.textMuted, marginTop: '4px' }}>PNG, JPG, SVG, WEBP — máx 5MB</p>
+              <p style={{ fontSize: theme.fontSizes.xs, color: theme.dashboard.textMuted, marginTop: '4px' }}>PNG, JPG, SVG, WEBP — máx 5MB</p>
               {logoError && <p style={{ color: theme.colors.error, fontSize: theme.fontSizes.xs, marginTop: '4px' }}>{logoError}</p>}
             </div>
           </div>
@@ -316,7 +316,7 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
 
   const openEdit = (c: Cliente) => {
     setEditTarget(c)
-    editForm.reset({ nombre: c.nombre, tipo: c.tipo, email: c.email ?? '', telefono: c.telefono ?? '', direccion: c.direccion ?? '', localidad: c.localidad ?? '', cuit: c.cuit ?? '', rubro: c.rubro ?? '', notas: c.notas ?? '', activo: c.activo, imagen: c.imagen ?? '', pagina_web: c.pagina_web ?? '', mostrar_en_landing: c.mostrar_en_landing })
+    editForm.reset({ nombre: c.nombre, tipo: c.tipo as 'PARTICULAR' | 'EMPRESA' | 'COMERCIO', email: c.email ?? '', telefono: c.telefono ?? '', direccion: c.direccion ?? '', localidad: c.localidad ?? '', cuit: c.cuit ?? '', rubro: c.rubro ?? '', notas: c.notas ?? '', activo: c.activo, imagen: c.imagen ?? '', pagina_web: c.pagina_web ?? '', mostrar_en_landing: c.mostrar_en_landing })
     setEditError(null)
   }
 
@@ -367,7 +367,7 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
     <>
       {/* Header row */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-        <p style={{ fontSize: theme.fontSizes.sm, color: theme.colors.textMuted }}>
+        <p style={{ fontSize: theme.fontSizes.sm, color: theme.dashboard.textMuted }}>
           {clientes.length} cliente{clientes.length !== 1 ? 's' : ''}
         </p>
         <button
@@ -381,7 +381,7 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
       {globalError && <div style={{ marginBottom: '16px' }}><ErrorBox message={globalError} /></div>}
 
       {/* Table */}
-      <div style={{ backgroundColor: theme.colors.secondary, borderRadius: theme.radii.md, border: `1px solid ${theme.colors.border}`, overflow: 'hidden' }}>
+      <div style={{ backgroundColor: theme.dashboard.cardBg, borderRadius: theme.radii.md, border: `1px solid ${theme.dashboard.border}`, overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
@@ -397,7 +397,7 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
           <tbody>
             {clientes.length === 0 && (
               <tr>
-                <td colSpan={7} style={{ ...tdStyle, textAlign: 'center', color: theme.colors.textMuted }}>
+                <td colSpan={7} style={{ ...tdStyle, textAlign: 'center', color: theme.dashboard.textMuted }}>
                   No hay clientes registrados
                 </td>
               </tr>
@@ -407,7 +407,7 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
                 <td style={{ ...tdStyle, fontWeight: theme.fontWeights.medium }}>
                   <span style={{ display: 'block' }}>{c.nombre}</span>
                   {c.localidad && (
-                    <span style={{ display: 'block', fontSize: theme.fontSizes.xs, color: theme.colors.textMuted, fontWeight: theme.fontWeights.regular, marginTop: '1px' }}>
+                    <span style={{ display: 'block', fontSize: theme.fontSizes.xs, color: theme.dashboard.textMuted, fontWeight: theme.fontWeights.regular, marginTop: '1px' }}>
                       {c.localidad}
                     </span>
                   )}
@@ -417,21 +417,21 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
                     {TYPE_LABELS[c.tipo] ?? c.tipo}
                   </span>
                 </td>
-                <td style={{ ...tdStyle, color: theme.colors.textMuted }}>{c.rubro || '—'}</td>
-                <td style={{ ...tdStyle, color: theme.colors.textMuted }}>{c.telefono || '—'}</td>
+                <td style={{ ...tdStyle, color: theme.dashboard.textMuted }}>{c.rubro || '—'}</td>
+                <td style={{ ...tdStyle, color: theme.dashboard.textMuted }}>{c.telefono || '—'}</td>
                 <td style={tdStyle}>
-                  <span style={{ padding: '3px 10px', borderRadius: theme.radii.full, fontSize: theme.fontSizes.xs, fontWeight: theme.fontWeights.medium, backgroundColor: c.activo ? `${theme.colors.success}18` : `${theme.colors.textMuted}18`, color: c.activo ? theme.colors.success : theme.colors.textMuted }}>
+                  <span style={{ padding: '3px 10px', borderRadius: theme.radii.full, fontSize: theme.fontSizes.xs, fontWeight: theme.fontWeights.medium, backgroundColor: c.activo ? `${theme.colors.success}18` : `${theme.dashboard.textMuted}18`, color: c.activo ? theme.colors.success : theme.dashboard.textMuted }}>
                     {c.activo ? 'Activo' : 'Inactivo'}
                   </span>
                 </td>
                 <td style={tdStyle}>
                   {c.mostrar_en_landing
                     ? <span style={{ padding: '3px 10px', borderRadius: theme.radii.full, fontSize: theme.fontSizes.xs, fontWeight: theme.fontWeights.medium, backgroundColor: `${theme.colors.accent}18`, color: theme.colors.accent }}>Sí</span>
-                    : <span style={{ color: theme.colors.textMuted }}>—</span>}
+                    : <span style={{ color: theme.dashboard.textMuted }}>—</span>}
                 </td>
                 <td style={{ ...tdStyle, textAlign: 'right' }}>
                   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
-                    <button onClick={() => openEdit(c)} style={{ background: 'none', border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.sm, cursor: 'pointer', color: theme.colors.textMuted, padding: '5px 8px', display: 'flex', alignItems: 'center' }}>
+                    <button onClick={() => openEdit(c)} style={{ background: 'none', border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.sm, cursor: 'pointer', color: theme.dashboard.textMuted, padding: '5px 8px', display: 'flex', alignItems: 'center' }}>
                       <Pencil size={13} />
                     </button>
                     <button onClick={() => setDeleteTarget(c)} style={{ background: 'none', border: `1px solid ${theme.colors.error}44`, borderRadius: theme.radii.sm, cursor: 'pointer', color: theme.colors.error, padding: '5px 8px', display: 'flex', alignItems: 'center' }}>
@@ -481,14 +481,14 @@ export default function ClientesClient({ initialClientes, initialRubros }: {
       {deleteTarget && (
         <ModalOverlay>
           <ModalCard title="Eliminar cliente" onClose={() => setDeleteTarget(null)}>
-            <p style={{ fontSize: theme.fontSizes.base, color: theme.colors.text, marginBottom: '8px' }}>
+            <p style={{ fontSize: theme.fontSizes.base, color: theme.dashboard.text, marginBottom: '8px' }}>
               ¿Eliminás a <strong>{deleteTarget.nombre}</strong>?
             </p>
-            <p style={{ fontSize: theme.fontSizes.sm, color: theme.colors.textMuted, marginBottom: '24px' }}>
+            <p style={{ fontSize: theme.fontSizes.sm, color: theme.dashboard.textMuted, marginBottom: '24px' }}>
               Esta acción no se puede deshacer.
             </p>
             <div style={{ display: 'flex', gap: '12px' }}>
-              <button onClick={() => setDeleteTarget(null)} style={{ flex: 1, padding: '10px', border: `1px solid ${theme.colors.border}`, borderRadius: theme.radii.sm, background: 'transparent', color: theme.colors.text, cursor: 'pointer', fontSize: theme.fontSizes.sm }}>
+              <button onClick={() => setDeleteTarget(null)} style={{ flex: 1, padding: '10px', border: `1px solid ${theme.dashboard.border}`, borderRadius: theme.radii.sm, background: 'transparent', color: theme.dashboard.text, cursor: 'pointer', fontSize: theme.fontSizes.sm }}>
                 Cancelar
               </button>
               <button onClick={confirmDelete} disabled={deleting}

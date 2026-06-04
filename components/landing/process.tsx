@@ -99,7 +99,7 @@ export function Process() {
   return (
     <section
       id="process"
-      style={{ position: 'relative', overflow: 'hidden' }}
+      style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh' }}
     >
       {/* Fondo con imagen desenfocada */}
       <div style={{ position: 'absolute', inset: 0, filter: 'blur(2px)', transform: 'scale(1.05)', overflow: 'hidden' }}>

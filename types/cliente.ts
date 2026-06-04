@@ -1,20 +1,7 @@
-export type Cliente = {
-  id: number
-  nombre: string
-  tipo: 'PARTICULAR' | 'EMPRESA' | 'COMERCIO'
-  email: string | null
-  telefono: string | null
-  direccion: string | null
-  localidad: string | null
-  cuit: string | null
-  rubro: string | null
-  notas: string | null
-  activo: boolean
-  imagen: string | null
-  pagina_web: string | null
-  mostrar_en_landing: boolean
-  created_at: string
-}
+import type { InferSelectModel } from 'drizzle-orm'
+import type { clientes } from '@/lib/db/schema'
+
+export type Cliente = InferSelectModel<typeof clientes>
 
 export type ClienteLanding = {
   id: number

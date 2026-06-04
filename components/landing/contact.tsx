@@ -7,17 +7,43 @@ import { theme } from '@/lib/theme'
 import { SectionBanner } from '@/components/landing/section-banner'
 
 export function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', message: '' })
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSending(true)
-    await new Promise(r => setTimeout(r, 1000))
-    setSending(false)
-    setSent(true)
-    setForm({ name: '', email: '', phone: '', message: '' })
+    setError('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre:   form.name,
+          empresa:  form.company || undefined,
+          email:    form.email,
+          telefono: form.phone || undefined,
+          mensaje:  form.message,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.error ?? 'Error al enviar el mensaje. Intentá de nuevo.')
+        return
+      }
+
+      setSent(true)
+      setForm({ name: '', company: '', email: '', phone: '', message: '' })
+    } catch {
+      setError('Error de conexión. Intentá de nuevo.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const inputStyle = {
@@ -40,7 +66,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" style={{ position: 'relative', overflow: 'hidden' }}>
+    <section id="contact" style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh' }}>
 
       {/* Imagen de fondo */}
       <Image
@@ -174,16 +200,28 @@ export function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div>
-                  <label style={labelStyle}>Nombre</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={e => setForm({ ...form, name: e.target.value })}
-                    style={inputStyle}
-                    placeholder="Tu nombre"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label style={labelStyle}>Nombre *</label>
+                    <input
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={e => setForm({ ...form, name: e.target.value })}
+                      style={inputStyle}
+                      placeholder="Tu nombre"
+                    />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Empresa</label>
+                    <input
+                      type="text"
+                      value={form.company}
+                      onChange={e => setForm({ ...form, company: e.target.value })}
+                      style={inputStyle}
+                      placeholder="Tu empresa"
+                    />
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
@@ -219,6 +257,11 @@ export function Contact() {
                     placeholder="¿En qué podemos ayudarte?"
                   />
                 </div>
+                {error && (
+                  <p style={{ color: '#ff6b6b', fontSize: theme.fontSizes.sm, textAlign: 'center' }}>
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
                   disabled={sending}

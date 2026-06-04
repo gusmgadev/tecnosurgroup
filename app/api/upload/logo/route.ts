@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
-import { supabaseAdmin } from '@/services/supabase-admin'
+import { put } from '@vercel/blob'
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml']
 const MAX_SIZE_MB = 5
@@ -21,18 +21,12 @@ export async function POST(req: Request) {
   }
 
   const ext = (file.name.split('.').pop() ?? 'png').toLowerCase()
-  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-  const buffer = Buffer.from(await file.arrayBuffer())
+  const fileName = `logos/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
 
-  const { data, error } = await supabaseAdmin.storage
-    .from('clientes-logos')
-    .upload(fileName, buffer, { contentType: file.type, upsert: false })
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-
-  const { data: { publicUrl } } = supabaseAdmin.storage
-    .from('clientes-logos')
-    .getPublicUrl(data.path)
-
-  return NextResponse.json({ url: publicUrl })
+  try {
+    const blob = await put(fileName, file, { access: 'public' })
+    return NextResponse.json({ url: blob.url })
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 })
+  }
 }

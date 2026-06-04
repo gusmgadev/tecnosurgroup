@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Lock } from 'lucide-react'
 import { theme } from '@/lib/theme'
 
 const navItems = [
@@ -30,6 +30,37 @@ export function Navbar() {
   }, [])
 
   return (
+    <>
+    {/* Botón de acceso al panel — flotante derecha, fuera del navbar */}
+    <Link
+      href="/auth/signin"
+      title="Acceso al panel"
+      className="fixed"
+      style={{
+        right: '20px',
+        top: '20px',
+        zIndex: 60,
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        padding: '8px 14px',
+        borderRadius: '99px',
+        background: 'rgba(0,0,0,0.45)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255,255,255,0.15)',
+        color: 'rgba(255,255,255,0.65)',
+        fontSize: theme.fontSizes.sm,
+        textDecoration: 'none',
+        transition: theme.transitions.fast,
+      }}
+      onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(0,0,0,0.65)' }}
+      onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.background = 'rgba(0,0,0,0.45)' }}
+    >
+      <Lock size={13} />
+      <span className="hidden sm:inline">Login</span>
+    </Link>
+
     <header
       className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
       style={{ transform: hidden ? 'translateY(-100%)' : 'translateY(0)', transition: 'transform 0.3s ease' }}
@@ -55,7 +86,7 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex-shrink-0 relative w-[68px] h-[68px] md:w-[110px] md:h-[110px] rounded-full flex items-center justify-center overflow-hidden"
+          className="flex-shrink-0 relative w-[80px] h-[80px] md:w-[130px] md:h-[130px] rounded-full flex items-center justify-center overflow-hidden"
           style={{ background: '#ffffff' }}
         >
           <Image
@@ -190,5 +221,6 @@ export function Navbar() {
         </div>
       )}
     </header>
+    </>
   )
 }

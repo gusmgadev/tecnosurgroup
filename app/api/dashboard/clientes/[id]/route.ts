@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
-import { supabaseAdmin } from '@/services/supabase-admin'
+import { db } from '@/lib/db'
+import { clientes } from '@/lib/db/schema'
+import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 
 const updateSchema = z.object({
@@ -35,14 +37,16 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message }, { status: 400 })
   }
-  const { data, error } = await supabaseAdmin
-    .from('clientes')
-    .update({ ...parsed.data, updated_at: new Date().toISOString() })
-    .eq('id', id)
-    .select()
-    .single()
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json(data)
+  try {
+    const rows = await db
+      .update(clientes)
+      .set({ ...parsed.data, updated_at: new Date() })
+      .where(eq(clientes.id, Number(id)))
+      .returning()
+    return NextResponse.json(rows[0])
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 })
+  }
 }
 
 export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -50,7 +54,10 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
   }
   const { id } = await params
-  const { error } = await supabaseAdmin.from('clientes').delete().eq('id', id)
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json({ ok: true })
+  try {
+    await db.delete(clientes).where(eq(clientes.id, Number(id)))
+    return NextResponse.json({ ok: true })
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 })
+  }
 }

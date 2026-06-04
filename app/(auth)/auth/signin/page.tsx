@@ -20,12 +20,12 @@ const inputStyle = (hasError: boolean) => ({
   width: '100%',
   padding: '10px 14px',
   fontSize: theme.fontSizes.base,
-  border: `1px solid ${hasError ? theme.colors.error : theme.colors.border}`,
+  border: `1px solid ${hasError ? theme.colors.error : theme.dashboard.border}`,
   borderRadius: theme.radii.sm,
   outline: 'none',
   boxSizing: 'border-box' as const,
-  backgroundColor: theme.colors.primary,
-  color: theme.colors.text,
+  backgroundColor: theme.dashboard.inputBg,
+  color: theme.dashboard.text,
   fontFamily: 'inherit',
 })
 
@@ -61,16 +61,16 @@ export default function SignInPage() {
 
   return (
     <div>
-      <h1 style={{ fontSize: theme.fontSizes.xl, fontWeight: theme.fontWeights.bold, color: theme.colors.text, marginBottom: theme.spacing.xs }}>
+      <h1 style={{ fontSize: theme.fontSizes.xl, fontWeight: theme.fontWeights.bold, color: theme.dashboard.text, marginBottom: theme.spacing.xs }}>
         Iniciar sesión
       </h1>
-      <p style={{ fontSize: theme.fontSizes.sm, color: theme.colors.textMuted, marginBottom: theme.spacing.xl }}>
+      <p style={{ fontSize: theme.fontSizes.sm, color: theme.dashboard.textMuted, marginBottom: theme.spacing.xl }}>
         Acceso al panel de administración
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: theme.spacing.md }}>
         <div>
-          <label htmlFor="email" style={{ display: 'block', fontSize: theme.fontSizes.sm, fontWeight: theme.fontWeights.medium, color: theme.colors.text, marginBottom: theme.spacing.xs }}>
+          <label htmlFor="email" style={{ display: 'block', fontSize: theme.fontSizes.sm, fontWeight: theme.fontWeights.medium, color: theme.dashboard.text, marginBottom: theme.spacing.xs }}>
             Email
           </label>
           <input
@@ -103,7 +103,7 @@ export default function SignInPage() {
             <button
               type="button"
               onClick={() => setShowPassword((v) => !v)}
-              style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: theme.colors.textMuted, padding: 0, display: 'flex', alignItems: 'center' }}
+              style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: theme.dashboard.textMuted, padding: 0, display: 'flex', alignItems: 'center' }}
               aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}

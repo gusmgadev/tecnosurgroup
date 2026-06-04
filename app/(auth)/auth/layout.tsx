@@ -7,7 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: theme.colors.background,
+        backgroundColor: theme.dashboard.bg,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -15,21 +15,32 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         padding: theme.spacing.md,
       }}
     >
-      <Image
-        src={theme.logo.pathWhite}
-        alt="Tecnosur Group"
-        width={theme.auth.logo.width}
-        height={theme.auth.logo.height}
-        style={{ marginBottom: theme.spacing.lg }}
-        priority
-      />
+      <div style={{
+        position: 'relative',
+        width: '110px',
+        height: '110px',
+        borderRadius: '50%',
+        backgroundColor: '#ffffff',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
+        overflow: 'hidden',
+        marginBottom: theme.spacing.lg,
+        flexShrink: 0,
+      }}>
+        <Image
+          src={theme.logo.path}
+          alt="Tecnosur Group"
+          fill
+          style={{ objectFit: 'contain', padding: '10px' }}
+          priority
+        />
+      </div>
 
       <div
         style={{
-          backgroundColor: theme.colors.secondary,
-          border: `1px solid ${theme.colors.border}`,
+          backgroundColor: theme.dashboard.cardBg,
+          border: `1px solid ${theme.dashboard.border}`,
           borderRadius: theme.radii.md,
-          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
           padding: '48px',
           width: '100%',
           maxWidth: '440px',
@@ -42,7 +53,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         href="/"
         style={{
           marginTop: theme.spacing.lg,
-          color: theme.colors.textMuted,
+          color: theme.dashboard.textMuted,
           fontSize: theme.fontSizes.sm,
           textDecoration: 'none',
         }}

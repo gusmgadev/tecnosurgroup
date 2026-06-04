@@ -10,7 +10,7 @@ export default function Clients() {
   return (
     <section
       id="clientes"
-      style={{ position: 'relative', scrollMarginTop: '64px', overflow: 'hidden' }}
+      style={{ position: 'relative', overflow: 'hidden', minHeight: '100dvh' }}
     >
       {/* Imagen de fondo */}
       <Image
