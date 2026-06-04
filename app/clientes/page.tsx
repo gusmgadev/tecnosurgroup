@@ -1,7 +1,6 @@
-import { Navbar }    from '@/components/landing/navbar'
-import Clients        from '@/components/landing/clients'
-import { CtaBanner }  from '@/components/landing/cta-banner'
-import { Footer }     from '@/components/landing/footer'
+import Clients                from '@/components/landing/clients'
+import { CtaBanner }          from '@/components/landing/cta-banner'
+import { Footer }             from '@/components/landing/footer'
 
 export const metadata = {
   title: 'Clientes — Tecnosur Group',
@@ -11,7 +10,6 @@ export const metadata = {
 export default function ClientesPage() {
   return (
     <main className="min-h-screen">
-      <Navbar />
       <Clients />
       <CtaBanner />
       <Footer />

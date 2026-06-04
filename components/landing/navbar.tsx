@@ -3,69 +3,116 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, X, Lock } from 'lucide-react'
 import { theme } from '@/lib/theme'
 
 const navItems = [
-  { label: 'Servicios', href: '/#services' },
-  { label: 'Proceso',   href: '/#process'  },
-  { label: 'Clientes',  href: '/clientes'  },
+  { label: 'Servicios',   href: '/#services' },
+  { label: 'Proceso',     href: '/#process'  },
+  { label: 'Clientes',    href: '/clientes'  },
+  { label: 'Contactanos', href: '/#contact'  },
 ]
+
+const linkStyle = {
+  color: 'rgba(255,255,255,0.70)' as const,
+  borderRadius: '99px',
+  padding: '6px 16px',
+  fontSize: theme.fontSizes.base,
+  transition: theme.transitions.fast,
+  display: 'block' as const,
+  textDecoration: 'none' as const,
+  cursor: 'pointer' as const,
+  background: 'none' as const,
+  border: 'none' as const,
+}
+
+const mobileLinkStyle = {
+  color: 'rgba(255,255,255,0.75)' as const,
+  padding: '10px 16px',
+  borderRadius: '10px',
+  display: 'block' as const,
+  transition: theme.transitions.fast,
+  fontSize: theme.fontSizes.base,
+  textDecoration: 'none' as const,
+  cursor: 'pointer' as const,
+  background: 'none' as const,
+  border: 'none' as const,
+  width: '100%' as const,
+  textAlign: 'left' as const,
+}
+
+function NavLink({ href, label, mobile = false, onClick }: { href: string; label: string; mobile?: boolean; onClick?: () => void }) {
+  const pathname = usePathname()
+  const router   = useRouter()
+
+  const handleClick = (e: React.MouseEvent) => {
+    onClick?.()
+
+    if (!href.startsWith('/#')) return // página completa — Link se encarga
+
+    e.preventDefault()
+    const sectionId = href.slice(2) // quita '/#'
+
+    if (pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      router.push(href)
+    }
+  }
+
+  if (!href.startsWith('/#')) {
+    return (
+      <Link
+        href={href}
+        onClick={onClick}
+        style={mobile ? mobileLinkStyle : linkStyle}
+        onMouseEnter={e => (e.currentTarget.style.color = mobile ? '#fff' : theme.colors.accent)}
+        onMouseLeave={e => (e.currentTarget.style.color = mobile ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.70)')}
+      >
+        {label}
+      </Link>
+    )
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      style={mobile ? mobileLinkStyle : linkStyle}
+      onMouseEnter={e => {
+        e.currentTarget.style.color = mobile ? '#fff' : theme.colors.accent
+        if (mobile) e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.color = mobile ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.70)'
+        if (mobile) e.currentTarget.style.background = 'transparent'
+      }}
+    >
+      {label}
+    </button>
+  )
+}
 
 export function Navbar() {
   const [isOpen, setIsOpen]     = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [hidden, setHidden]    = useState(false)
+  const [hidden, setHidden]     = useState(false)
 
   useEffect(() => {
-    let lastY = window.scrollY
     const onScroll = () => {
       const y = window.scrollY
       setScrolled(y > 20)
-      setHidden(y > lastY && y > 100)
-      lastY = y
+      setHidden(y > window.innerHeight * 0.85)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <>
-    {/* Botón de acceso al panel — flotante derecha, fuera del navbar */}
-    <Link
-      href="/auth/signin"
-      title="Acceso al panel"
-      className="fixed"
-      style={{
-        right: '20px',
-        top: '20px',
-        zIndex: 60,
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        padding: '8px 14px',
-        borderRadius: '99px',
-        background: 'rgba(0,0,0,0.45)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255,255,255,0.15)',
-        color: 'rgba(255,255,255,0.65)',
-        fontSize: theme.fontSizes.sm,
-        textDecoration: 'none',
-        transition: theme.transitions.fast,
-      }}
-      onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(0,0,0,0.65)' }}
-      onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.background = 'rgba(0,0,0,0.45)' }}
-    >
-      <Lock size={13} />
-      <span className="hidden sm:inline">Login</span>
-    </Link>
-
     <header
       className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
       style={{ transform: hidden ? 'translateY(-100%)' : 'translateY(0)', transition: 'transform 0.3s ease' }}
     >
-
       {/* ── Barra principal ── */}
       <nav
         style={{
@@ -102,55 +149,44 @@ export function Navbar() {
         <ul className="hidden md:flex items-center gap-1 list-none m-0 p-0">
           {navItems.map((item) => (
             <li key={item.label}>
-              <a
-                href={item.href}
-                style={{
-                  color: 'rgba(255,255,255,0.70)',
-                  borderRadius: '99px',
-                  padding: '6px 16px',
-                  fontSize: theme.fontSizes.base,
-                  transition: theme.transitions.fast,
-                  display: 'block',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.70)')}
-              >
-                {item.label}
-              </a>
+              <NavLink href={item.href} label={item.label} />
             </li>
           ))}
         </ul>
 
-        {/* CTA desktop */}
-        <a
-          href={theme.navbar.cta.href}
-          className="hidden md:block"
+        {/* Login desktop */}
+        <Link
+          href="/auth/signin"
+          className="hidden md:flex"
           style={{
-            background: '#ffffff',
-            color: theme.colors.dark,
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 14px',
             borderRadius: '99px',
-            padding: '8px 20px',
-            fontWeight: theme.fontWeights.bold,
-            fontSize: theme.fontSizes.base,
+            border: '1px solid rgba(255,255,255,0.25)',
+            color: 'rgba(255,255,255,0.65)',
+            fontSize: theme.fontSizes.sm,
+            textDecoration: 'none',
             transition: theme.transitions.fast,
           }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
-          onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.currentTarget.style.color = '#ffffff'
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.55)'
+          }}
+          onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.currentTarget.style.color = 'rgba(255,255,255,0.65)'
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
+          }}
         >
-          {theme.navbar.cta.text}
-        </a>
+          <Lock size={13} />
+          Login
+        </Link>
 
         {/* Hamburguesa mobile */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center md:hidden"
-          style={{
-            color: '#ffffff',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '4px',
-          }}
+          style={{ color: '#ffffff', background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
           aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
         >
           {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -175,52 +211,34 @@ export function Navbar() {
           <ul className="list-none m-0 p-0 flex flex-col gap-1">
             {navItems.map((item) => (
               <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  style={{
-                    color: 'rgba(255,255,255,0.75)',
-                    padding: '10px 16px',
-                    borderRadius: '10px',
-                    display: 'block',
-                    transition: theme.transitions.fast,
-                    fontSize: theme.fontSizes.base,
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.color = '#fff'
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.color = 'rgba(255,255,255,0.75)'
-                    e.currentTarget.style.background = 'transparent'
-                  }}
-                >
-                  {item.label}
-                </a>
+                <NavLink href={item.href} label={item.label} mobile onClick={() => setIsOpen(false)} />
               </li>
             ))}
-            <li className="mt-2">
-              <a
-                href={theme.navbar.cta.href}
+            <li>
+              <Link
+                href="/auth/signin"
                 onClick={() => setIsOpen(false)}
                 style={{
-                  background: '#ffffff',
-                  color: theme.colors.dark,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  color: 'rgba(255,255,255,0.65)',
                   padding: '10px 16px',
-                  borderRadius: '99px',
-                  fontWeight: theme.fontWeights.bold,
-                  display: 'block',
-                  textAlign: 'center',
+                  borderRadius: '10px',
+                  textDecoration: 'none',
+                  transition: theme.transitions.fast,
                   fontSize: theme.fontSizes.base,
                 }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(255,255,255,0.08)' }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.background = 'transparent' }}
               >
-                {theme.navbar.cta.text}
-              </a>
+                <Lock size={14} />
+                Login
+              </Link>
             </li>
           </ul>
         </div>
       )}
     </header>
-    </>
   )
 }

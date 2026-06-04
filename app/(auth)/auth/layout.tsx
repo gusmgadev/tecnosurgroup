@@ -53,8 +53,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         href="/"
         style={{
           marginTop: theme.spacing.lg,
-          color: theme.dashboard.textMuted,
-          fontSize: theme.fontSizes.sm,
+          color: theme.dashboard.text,
+          fontSize: theme.fontSizes.base,
+          fontWeight: theme.fontWeights.bold,
           textDecoration: 'none',
         }}
       >
