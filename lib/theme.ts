@@ -146,11 +146,11 @@ export const theme = {
     ],
 
     nav: [
-      { label: "Inicio",    href: "/" },
-      { label: "Servicios", href: "#services" },
-      { label: "Clientes",  href: "#clientes" },
-      { label: "Proceso",   href: "#process" },
-      { label: "Contacto",  href: "#contact" },
+      { label: "Inicio",    href: "/"          },
+      { label: "Servicios", href: "/#services"  },
+      { label: "Clientes",  href: "/clientes"   },
+      { label: "Proceso",   href: "/#process"   },
+      { label: "Contacto",  href: "/#contact"   },
     ],
   },
 
@@ -158,7 +158,7 @@ export const theme = {
   contact: {
     phone:    "+54 297 443-7049",
     email:    "info@tecnosurgroup.com",
-    whatsapp: "542974437049",            // sin + ni espacios — formato para wa.me/
+    whatsapp: "5492974437049",            // sin + ni espacios — formato para wa.me/ (54 + 9 + 297 + número)
     address:  "Gdor. Manuel Pio Raso 1706, Rada Tilly, Chubut, Argentina",
   },
 

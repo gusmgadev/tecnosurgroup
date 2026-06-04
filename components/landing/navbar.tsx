@@ -7,9 +7,9 @@ import { Menu, X, Lock } from 'lucide-react'
 import { theme } from '@/lib/theme'
 
 const navItems = [
-  { label: 'Servicios', href: '#services' },
-  { label: 'Proceso',   href: '#process'  },
-  { label: 'Clientes',  href: '#clientes' },
+  { label: 'Servicios', href: '/#services' },
+  { label: 'Proceso',   href: '/#process'  },
+  { label: 'Clientes',  href: '/clientes'  },
 ]
 
 export function Navbar() {

@@ -15,10 +15,12 @@ Adjuntar siempre:
 - Nunca hardcodear valores visuales en componentes
 - Siempre importar: `import { theme } from '@/lib/theme'`
 
-### Supabase
-- `lib/supabase.ts` — solo para browser / Client Components
-- `services/supabase-admin.ts` — solo para server (API routes, Server Components, page.tsx)
-- **Nunca importar `supabase-admin` en archivos con `'use client'`**
+### Base de datos — Neon + Drizzle ORM
+- `lib/db/index.ts` — cliente Drizzle (singleton con lazy init, solo server)
+- `lib/db/schema.ts` — definición de tablas (`clientes`, `contactos`)
+- `drizzle.config.ts` — configuración para migraciones
+- **Nunca importar `lib/db` en archivos con `'use client'`**
+- Para migraciones: `npx drizzle-kit push`
 
 ### Next.js 16 (breaking changes)
 - El archivo de proxy/middleware se llama **`proxy.ts`** (no `middleware.ts`)
@@ -27,8 +29,15 @@ Adjuntar siempre:
 
 ### Autenticación
 - Un solo admin definido en `.env.local` (`ADMIN_EMAIL` + `ADMIN_PASSWORD`)
-- No hay tabla de usuarios en Supabase — no crearla sin pedido explícito
+- No hay tabla de usuarios en DB — no crearla sin pedido explícito
 - Para verificar sesión en Server Components: `const session = await auth()`
+
+### Email — Resend
+- Dominio `tecnosurgroup.com` verificado en Resend (DKIM + SPF)
+- **NO usar `replyTo`** — el servidor de Ferozo lo marca como spam (email externo en Reply-To de dominio propio)
+- **NO usar em dash `—` en subjects** — causa encoding `â€"` que activa filtros de spam
+- Subject actual: `"Nuevo contacto desde pagina WEB - {nombre}"`
+- Los contactos se guardan en tabla `contactos` de Neon aunque falle el email
 
 ### Tema visual
 - Fondo principal: `theme.colors.primary` (`#0F0F10`)
@@ -38,8 +47,8 @@ Adjuntar siempre:
 
 ## Base de datos actual
 
-- **Tabla:** `clientes` — ver estructura completa en `context/CONTEXT.md`
-- **Storage:** bucket `clientes-logos` (público) — logos subidos via `/api/upload/logo`
+- **Tablas:** `clientes` y `contactos` — ver estructura completa en `context/CONTEXT.md`
+- **Storage:** Vercel Blob — logos subidos via `/api/upload/logo` (usa `BLOB_READ_WRITE_TOKEN`)
 
 ## Archivos que NO tocar sin revisar primero
 
