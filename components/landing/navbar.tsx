@@ -59,9 +59,8 @@ function NavLink({ href, label, mobile = false, onClick }: { href: string; label
       if (el) {
         const nav = document.querySelector('header')
         const navH = nav ? nav.getBoundingClientRect().height : 100
-        const yellowBar = (el.children[0] as HTMLElement)?.children[0] as HTMLElement | undefined
-        const yellowH = yellowBar ? yellowBar.offsetHeight : 0
-        window.scrollTo({ top: el.offsetTop + yellowH - navH, behavior: 'smooth' })
+        const y = el.getBoundingClientRect().top + window.scrollY - navH
+        window.scrollTo({ top: y, behavior: 'smooth' })
       }
     } else {
       router.push(href)
