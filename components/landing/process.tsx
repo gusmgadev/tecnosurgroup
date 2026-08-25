@@ -124,7 +124,6 @@ export function Process() {
       <SectionBanner
         label={theme.sectionHeaders.process.label}
         description={theme.sectionHeaders.process.description}
-        anchorId="process"
       />
 
       {/* Contenido */}

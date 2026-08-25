@@ -8,10 +8,9 @@ import { theme } from '@/lib/theme'
 interface SectionBannerProps {
   label: string
   description: string
-  anchorId?: string
 }
 
-export function SectionBanner({ label, description, anchorId }: SectionBannerProps) {
+export function SectionBanner({ label, description }: SectionBannerProps) {
   const pathname = usePathname()
 
   const handleHomeClick = (e: React.MouseEvent) => {
@@ -47,7 +46,7 @@ export function SectionBanner({ label, description, anchorId }: SectionBannerPro
       </div>
 
       {/* Botón Inicio */}
-      <div id={anchorId ? `${anchorId}-anchor` : undefined} style={{ maxWidth: '1280px', margin: '0 auto', padding: '12px 48px' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '12px 48px' }}>
         <Link
           href="/"
           onClick={handleHomeClick}

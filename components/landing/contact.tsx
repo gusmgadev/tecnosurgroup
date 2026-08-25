@@ -89,7 +89,6 @@ export function Contact() {
       <SectionBanner
         label={theme.sectionHeaders.contact.label}
         description={theme.sectionHeaders.contact.description}
-        anchorId="contact"
       />
 
       {/* Contenido */}

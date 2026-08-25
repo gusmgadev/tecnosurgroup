@@ -100,11 +100,10 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
 
 export function Services() {
   return (
-    <section style={{ background: theme.colors.background }}>
+    <section id="services" style={{ background: theme.colors.background }}>
       <SectionBanner
         label={theme.sectionHeaders.services.label}
         description={theme.sectionHeaders.services.description}
-        anchorId="services"
       />
       <div style={{ maxWidth: '1260px', margin: '0 auto', padding: '24px 24px 32px' }}>
         <motion.h2
