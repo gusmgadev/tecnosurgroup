@@ -191,7 +191,7 @@ export const theme = {
         image:       '/images/servicios/fabricacion carrocerias.jpeg',
       },
       {
-        title:       'Taller Homologado – Certificados de montaje y fabricación',
+        title:       'Taller Homologado Certificados de montaje y fabricación',
         description: 'Trámites y certificaciones oficiales de seguridad y cumplimiento normativo.',
         image:       '/images/servicios/taller homologado.jpeg',
       },

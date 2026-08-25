@@ -31,7 +31,7 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: '32px 24px 28px',
+        padding: '20px 20px 18px',
         textAlign: 'center',
       }}
     >
@@ -48,7 +48,7 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
           border: `3px solid ${hovered ? theme.colors.accent : theme.colors.border}`,
           boxShadow: hovered ? `0 0 0 6px ${theme.colors.accent}22` : 'none',
           transition: `border-color ${theme.transitions.normal}, box-shadow ${theme.transitions.normal}`,
-          marginBottom: '24px',
+          marginBottom: '14px',
           flexShrink: 0,
         }}
       >
@@ -68,7 +68,7 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
           width: '48px',
           borderRadius: '2px',
           background: theme.colors.accent,
-          marginBottom: '16px',
+          marginBottom: '10px',
           originX: 0.5,
         }}
         animate={{ scaleX: hovered ? 1 : 0 }}
@@ -80,8 +80,7 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
           fontSize: theme.fontSizes.lg,
           fontWeight: theme.fontWeights.bold,
           color: hovered ? theme.colors.accent : theme.colors.text,
-          marginBottom: '12px',
-          transition: `color ${theme.transitions.normal}`,
+          marginBottom: '8px',
         }}
       >
         {service.title}
@@ -101,12 +100,13 @@ function ServiceCard({ service, index }: { service: typeof theme.services.items[
 
 export function Services() {
   return (
-    <section id="services" style={{ background: theme.colors.background, minHeight: '100dvh' }}>
+    <section style={{ background: theme.colors.background }}>
       <SectionBanner
         label={theme.sectionHeaders.services.label}
         description={theme.sectionHeaders.services.description}
+        anchorId="services"
       />
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 24px' }}>
+      <div style={{ maxWidth: '1260px', margin: '0 auto', padding: '24px 24px 32px' }}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export function Services() {
             color: theme.colors.textMuted,
             textAlign: 'center',
             maxWidth: '640px',
-            margin: '0 auto 48px',
+            margin: '0 auto 24px',
             lineHeight: 1.65,
           }}
         >
@@ -145,7 +145,7 @@ export function Services() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px',
+            gap: '16px',
           }}
         >
           {theme.services.items.map((service, i) => (
