@@ -47,7 +47,7 @@ export function SectionBanner({ label, description, anchorId }: SectionBannerPro
       </div>
 
       {/* Botón Inicio */}
-      <div id={anchorId} style={{ maxWidth: '1280px', margin: '0 auto', padding: '12px 48px' }}>
+      <div id={anchorId ? `${anchorId}-anchor` : undefined} style={{ maxWidth: '1280px', margin: '0 auto', padding: '12px 48px' }}>
         <Link
           href="/"
           onClick={handleHomeClick}
