@@ -42,7 +42,7 @@ const mobileLinkStyle = {
   textAlign: 'left' as const,
 }
 
-function NavLink({ href, label, mobile = false, onClick }: { href: string; label: string; mobile?: boolean; onClick?: () => void }) {
+function NavLink({ href, label, mobile = false, onClick, onNavigate }: { href: string; label: string; mobile?: boolean; onClick?: () => void; onNavigate?: () => void }) {
   const pathname = usePathname()
   const router   = useRouter()
 
@@ -55,13 +55,8 @@ function NavLink({ href, label, mobile = false, onClick }: { href: string; label
     const sectionId = href.slice(2) // quita '/#'
 
     if (pathname === '/') {
-      const el = document.getElementById(sectionId)
-      if (el) {
-        const nav = document.querySelector('header')
-        const navH = nav ? nav.getBoundingClientRect().height : 100
-        const y = el.getBoundingClientRect().top + window.scrollY - navH
-        window.scrollTo({ top: y, behavior: 'smooth' })
-      }
+      onNavigate?.()
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
     } else {
       router.push(href)
     }
@@ -155,7 +150,7 @@ export function Navbar() {
         <ul className="hidden md:flex items-center gap-1 list-none m-0 p-0">
           {navItems.map((item) => (
             <li key={item.label}>
-              <NavLink href={item.href} label={item.label} />
+              <NavLink href={item.href} label={item.label} onNavigate={() => setHidden(true)} />
             </li>
           ))}
         </ul>
@@ -217,7 +212,7 @@ export function Navbar() {
           <ul className="list-none m-0 p-0 flex flex-col gap-1">
             {navItems.map((item) => (
               <li key={item.label}>
-                <NavLink href={item.href} label={item.label} mobile onClick={() => setIsOpen(false)} />
+                <NavLink href={item.href} label={item.label} mobile onClick={() => setIsOpen(false)} onNavigate={() => setHidden(true)} />
               </li>
             ))}
             <li>
