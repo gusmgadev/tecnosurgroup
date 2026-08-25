@@ -55,7 +55,12 @@ function NavLink({ href, label, mobile = false, onClick }: { href: string; label
     const sectionId = href.slice(2) // quita '/#'
 
     if (pathname === '/') {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      const el = document.getElementById(sectionId)
+      if (el) {
+        const nav = document.querySelector('header')
+        const navH = nav ? nav.getBoundingClientRect().height : 100
+        window.scrollTo({ top: el.offsetTop - navH, behavior: 'smooth' })
+      }
     } else {
       router.push(href)
     }

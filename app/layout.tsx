@@ -56,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="h-full antialiased scroll-pt-[100px]">
+    <html lang="es" className="h-full antialiased" style={{ scrollPaddingTop: '100px' }}>
       <body className="min-h-full flex flex-col bg-black">{children}</body>
     </html>
   );
