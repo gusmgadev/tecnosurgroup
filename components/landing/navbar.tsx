@@ -141,6 +141,7 @@ export function Navbar() {
             src={theme.logo.path}
             alt="Tecnosur Group"
             fill
+            sizes="(min-width: 768px) 130px, 80px"
             style={{ objectFit: 'contain', padding: '6px' }}
             priority
           />

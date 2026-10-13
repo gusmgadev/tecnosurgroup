@@ -47,6 +47,8 @@ export default function Sidebar() {
             src={theme.logo.path}
             alt="Tecnosur Group"
             fill
+            sizes="90px"
+            loading="eager"
             style={{ objectFit: 'contain', padding: '8px' }}
           />
         </Link>

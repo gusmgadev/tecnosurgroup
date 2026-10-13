@@ -30,6 +30,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           src={theme.logo.path}
           alt="Tecnosur Group"
           fill
+          sizes="110px"
           style={{ objectFit: 'contain', padding: '10px' }}
           priority
         />
