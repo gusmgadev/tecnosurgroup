@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
-import { Building2, MessageSquare, LogOut } from 'lucide-react'
+import { Building2, MessageSquare, Images, LogOut } from 'lucide-react'
 import { theme } from '@/lib/theme'
 
 export default function Sidebar() {
@@ -12,6 +12,7 @@ export default function Sidebar() {
 
   const navItems = [
     { label: 'Clientes',   href: '/dashboard/clientes',  Icon: Building2     },
+    { label: 'Trabajos',   href: '/dashboard/trabajos',  Icon: Images        },
     { label: 'Contactos',  href: '/dashboard/contactos', Icon: MessageSquare },
   ]
 

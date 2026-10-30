@@ -10,6 +10,7 @@ import { theme } from '@/lib/theme'
 const navItems = [
   { label: 'Servicios',   href: '/#services' },
   { label: 'Proceso',     href: '/#process'  },
+  { label: 'Trabajos',    href: '/#trabajos' },
   { label: 'Clientes',    href: '/clientes'  },
   { label: 'Contactanos', href: '/#contact'  },
 ]

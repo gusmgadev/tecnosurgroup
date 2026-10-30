@@ -196,11 +196,26 @@ TecnosurGroup/
 | mensaje    | text        | Cuerpo del mensaje (requerido, min 10)   |
 | created_at | timestamptz | Auto                                     |
 
+### Tabla `trabajos`
+
+| Campo               | Tipo        | Descripción                                          |
+|--------------------|-------------|------------------------------------------------------|
+| id                 | serial PK   |                                                      |
+| titulo             | text        | Requerido, min 2                                     |
+| descripcion        | text        | Opcional — se muestra en la card de la landing        |
+| categoria          | varchar(20) | `'HIDROGRUAS'` / `'TERCER_EJE'` / `'CARROCERIAS'` / `'TALLER'` |
+| imagenes           | text[]      | URLs de Vercel Blob — la primera es la portada        |
+| activo             | boolean     | Default true                                         |
+| mostrar_en_landing | boolean     | Default true — controla si aparece en `/`            |
+| created_at         | timestamptz |                                                      |
+| updated_at         | timestamptz |                                                      |
+
 ### Storage — Vercel Blob
 
 - **Tipo:** Vercel Blob (reemplazó a Supabase Storage)
-- **Acceso:** via `BLOB_READ_WRITE_TOKEN` en `/api/upload/logo`
-- **Tipos permitidos:** JPG, PNG, WEBP, SVG — máx 5MB
+- **Acceso:** via `BLOB_READ_WRITE_TOKEN` en `/api/upload/logo` (logos de clientes) y `/api/upload/trabajo` (fotos de trabajos, múltiples archivos)
+- **Tipos permitidos:** JPG, PNG, WEBP, SVG — máx 5MB (trabajos: JPG/PNG/WEBP, hasta 12 fotos por trabajo)
+- **Limpieza:** al editar/eliminar un trabajo, sus fotos borradas se eliminan de Blob (`del()`)
 
 ---
 
@@ -237,10 +252,11 @@ TecnosurGroup/
 
 ### Rutas creadas
 
-- `/` → landing principal (dinámico — fetcha clientes de Neon)
+- `/` → landing principal (dinámico — fetcha trabajos de Neon)
 - `/auth/signin` → login
 - `/dashboard` → redirect a `/dashboard/clientes`
 - `/dashboard/clientes` → gestión CRUD de clientes
+- `/dashboard/trabajos` → gestión CRUD de trabajos (portfolio con fotos)
 - `/dashboard/contactos` → mensajes del formulario web (solo eliminar)
 
 ### Componentes landing (`components/landing/`)
@@ -249,6 +265,8 @@ TecnosurGroup/
 - `hero.tsx` → slider 3 imágenes, ficha de trabajo en curso, stats (20+ años, 200+ equipos)
 - `services.tsx` → 4 cards: Hidrogrúas, 3er Eje, Carrocerías, Taller Homologado
 - `process.tsx` → 4 pasos: Consultoría → Presupuesto → Ejecución → Certificación
+- `works.tsx` → sección Trabajos — Server Component, fetcha trabajos activos de Neon (`connection()` para datos frescos)
+- `works-gallery.tsx` → grid de cards con portada, categoría y lightbox (fotos múltiples, teclado ←/→/Esc)
 - `clients.tsx` → grid 2/3/4 cols, animación floating, hover con borde dorado + detalles
 - `contact.tsx` → formulario + teléfono, email, WhatsApp, dirección. Envía a `/api/contact`
 - `section-banner.tsx` → banner reutilizable con label y descripción de sección
@@ -256,7 +274,7 @@ TecnosurGroup/
 
 ### Componentes dashboard (`components/dashboard/`)
 
-- `sidebar.tsx` → logo blanco, links a Clientes y Contactos, botón logout
+- `sidebar.tsx` → logo blanco, links a Clientes, Trabajos y Contactos, botón logout
 
 ---
 
@@ -275,6 +293,9 @@ TecnosurGroup/
 - [x] Combobox de rubros con opción "Agregar nuevo"
 - [x] Formulario de contacto — guarda en DB + envía email via Resend
 - [x] Dashboard de Contactos — tabla con mensajes, responder y eliminar
+- [x] Sección Trabajos en landing — galería con cards, portada y lightbox de fotos
+- [x] CRUD completo de trabajos con upload múltiple de fotos a Vercel Blob (`/api/upload/trabajo`)
+- [x] Categorías fijas de trabajos: Hidrogrúas, 3er Eje, Carrocerías, Taller Homologado
 - [x] Deploy en Vercel (tecnosurgroup.com)
 
 ---
@@ -284,7 +305,6 @@ TecnosurGroup/
 ### Backlog
 
 - Múltiples usuarios admin con tabla en DB
-- Sección de trabajos realizados / portfolio
 - Integración WhatsApp Business API
 - Marcar contactos como leídos/respondidos en dashboard
 
@@ -315,5 +335,5 @@ TecnosurGroup/
 
 ---
 
-**Última actualización:** 04/06/2026
-**Actualizado por:** Claude (sesión — email contacto + migración Neon/Vercel Blob)
+**Última actualización:** 27/10/2026
+**Actualizado por:** Claude (sesión — sección Trabajos: portfolio con fotos desde el panel)

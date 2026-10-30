@@ -28,3 +28,15 @@ export const contactos = pgTable('contactos', {
   mensaje:    text('mensaje').notNull(),
   created_at: timestamp('created_at', { withTimezone: true }).defaultNow(),
 })
+
+export const trabajos = pgTable('trabajos', {
+  id:                 serial('id').primaryKey(),
+  titulo:             text('titulo').notNull(),
+  descripcion:        text('descripcion'),
+  categoria:          varchar('categoria', { length: 20 }).notNull().default('HIDROGRUAS'),
+  imagenes:           text('imagenes').array().notNull().default([]),
+  activo:             boolean('activo').notNull().default(true),
+  mostrar_en_landing: boolean('mostrar_en_landing').notNull().default(true),
+  created_at:         timestamp('created_at', { withTimezone: true }).defaultNow(),
+  updated_at:         timestamp('updated_at', { withTimezone: true }).defaultNow(),
+})

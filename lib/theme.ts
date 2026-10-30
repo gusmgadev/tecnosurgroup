@@ -242,10 +242,18 @@ export const theme = {
     ],
   },
 
+  // ── TRABAJOS (landing section) ─────────────────────────────────────────────
+  works: {
+    title:    "Nuestros Trabajos",
+    subtitle: "Proyectos realizados en montaje de hidrogrúas, reformas estructurales y carrocerías a medida — calidad certificada en cada entrega.",
+    empty:    "Muy pronto vamos a publicar nuestros trabajos realizados.",
+  },
+
   // ── SECTION HEADERS ────────────────────────────────────────────────────────
   sectionHeaders: {
     services: { label: "Lo que hacemos",               description: "Montaje, adaptación vehicular y fabricación de equipos a medida" },
     process:  { label: "Cómo trabajamos",              description: "Proceso claro, eficiente y respaldado por certificación oficial" },
+    works:    { label: "Lo que hicimos",               description: "Trabajos realizados que respaldan nuestra experiencia" },
     clients:  { label: "Empresas que confían en nosotros", description: "Más de 20 años de trayectoria en la industria del transporte y la energía" },
     contact:  { label: "Escribinos",                    description: "Cotizá o consultanos sin compromiso — te respondemos rápido" },
   },
