@@ -48,6 +48,9 @@ function WorkCard({ trabajo, onOpen }: { trabajo: TrabajoLanding; onOpen: () => 
         borderRadius: theme.radii.md,
         overflow: 'hidden',
         cursor: 'pointer',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
         boxShadow: hovered ? `0 0 18px ${theme.colors.accent}30` : 'none',
         transition: `border-color ${theme.transitions.fast}, box-shadow ${theme.transitions.fast}`,
       }}
@@ -77,12 +80,12 @@ function WorkCard({ trabajo, onOpen }: { trabajo: TrabajoLanding; onOpen: () => 
         )}
       </div>
 
-      <div style={{ padding: '18px 20px' }}>
+      <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
         <h3 style={{ margin: 0, fontSize: theme.fontSizes.lg, fontWeight: theme.fontWeights.bold, color: theme.colors.text, transition: `color ${theme.transitions.fast}` }}>
           {trabajo.titulo}
         </h3>
         {trabajo.descripcion && (
-          <p style={{ margin: '8px 0 0', fontSize: theme.fontSizes.sm, color: theme.colors.textMuted, lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+          <p style={{ margin: '8px 0 0', fontSize: theme.fontSizes.sm, color: theme.colors.textMuted, lineHeight: 1.6 }}>
             {trabajo.descripcion}
           </p>
         )}
